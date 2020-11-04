@@ -2,6 +2,10 @@
 node_modules
 /dist
 commit.md
+test.js
+# .env.development
+# .env.production
+# .env.test
 
 # local env files
 .env.local

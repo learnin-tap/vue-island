@@ -8,13 +8,18 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Classic",
-    component: Classic,
+    // name: "Classic",
+    // component: Classic,
+    redirect: "/classic",
   },
   {
     path: "/classic",
     name: "Classic",
     component: Classic,
+    meta: {
+      isUseCache: true,
+      keepAlive: true,
+    },
   },
   {
     path: "/book",

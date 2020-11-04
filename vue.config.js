@@ -9,6 +9,7 @@ module.exports = {
     config.resolve.alias
       .set("@", resolve("src"))
       .set("@styles", resolve("src/assets/styles"))
-      .set("@images", resolve("src/assets/images"));
+      .set("@images", resolve("src/assets/images"))
+      .set("@utils", resolve("src/utils"));
   },
 };
