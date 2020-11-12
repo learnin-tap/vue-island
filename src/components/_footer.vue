@@ -93,6 +93,8 @@ export default {
 	bottom: 0
 	width: 100%
 	height: 1rem
+	z-index 102
+	background #fff
 	border-top :0.03rem solid #f5f5f5
 	display: flex
 	justify-content :space-around

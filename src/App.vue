@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
-    <keep-alive>
+    <Header class="header" />
+    <keep-alive exclude="book-detail">
       <router-view />
     </keep-alive>
     <Footer />
@@ -18,5 +18,10 @@ export default {
   },
 };
 </script>
-
-<style></style>
+<style lang="stylus" scoped>
+// .header
+// 	position fixed
+// 	top 0
+// 	background green
+// 	z-index 101
+</style>

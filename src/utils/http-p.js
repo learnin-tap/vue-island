@@ -12,14 +12,15 @@ class HTTP {
       this._ask(url, resolve, reject, method, data);
     });
   }
+
   _ask(url, resolve, reject, method = "get", data = {}) {
     request({
-      url: process.env.VUE_APP_BASE_API + url,
+      url: process.env.VUE_APP_BASE_API + "v1/" + url,
       method,
       data,
     })
       .then((res) => {
-        const code = res.statusCode.toString(); //将返回的Number型状态码转为String型
+        const code = res.status.toString(); //将返回的Number型状态码转为String型
         if (code.startsWith("2")) {
           resolve(res.data);
         } else {

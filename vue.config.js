@@ -4,6 +4,7 @@ function resolve(dir) {
 }
 // 项目的主要配置文件
 module.exports = {
+  runtimeCompiler: true, //一种模式
   chainWebpack: (config) => {
     //修改文件引入自定义路径
     config.resolve.alias

@@ -25,6 +25,18 @@ const routes = [
     path: "/book",
     name: "Book",
     component: Book,
+    children: [
+      {
+        path: "/book-item",
+        name: "BookItem",
+        component: () => import("@/views/book/components/book-item"),
+      },
+    ],
+  },
+  {
+    path: "/book-detail/:id",
+    name: "BookDetail",
+    component: () => import("@/views/book/components/book-detail"),
   },
   {
     path: "/my",

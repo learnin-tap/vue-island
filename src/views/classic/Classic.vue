@@ -54,9 +54,9 @@
 </template>
 
 <script>
+import Like from "@/components/like";
+import ImgBtn from "@/components/imgBtn";
 import Episode from "./components/episode";
-import Like from "./components/like";
-import ImgBtn from "./components/imgBtn";
 import Movie from "./components/movie";
 import Music from "./components/music";
 import Essay from "./components/essay";
@@ -139,7 +139,7 @@ export default {
 <style lang="stylus" scoped>
 .container
 	width 100%
-	// margin 0 auto
+	margin-top 1rem
 	display flex
 	flex-direction column
 	align-items center

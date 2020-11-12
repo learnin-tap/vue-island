@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="container" @click="onLike">
-      <img v-if="receive_count" :src="receive_like ? yes_url : no_url" />
-      <img v-else :src="like ? yes_url : no_url" />
-      <span>{{ receive_count ? receive_count : count }}</span>
+      <img
+        v-if="receive_count"
+        :src="receive_like ? yes_url : no_url"
+        class="img"
+      />
+      <img v-else :src="like ? yes_url : no_url" class="img" />
+      <span class="num">{{ receive_count ? receive_count : count }}</span>
     </div>
   </div>
 </template>
@@ -34,9 +38,11 @@ export default {
   methods: {
     onLike() {
       if (!this.flag) {
+        // 第一次进入则取接口的数据
         this.receive_count = this.like ? this.count - 1 : this.count + 1;
         this.receive_like = !this.like;
       } else {
+        //否则用自己控制的数据
         this.receive_count = this.receive_like
           ? this.receive_count - 1
           : this.receive_count + 1;
@@ -56,14 +62,14 @@ export default {
 	flex-direction row
 	width 1rem
 	padding .1rem
-	.container span
+	.num
 		font-size .24rem
 		color #bbbbbb
 		line-height .24rem
 		position relative
 		bottom .1rem
 		left .06rem
-	.container img
+	.img
 		width .32rem
 		height .28rem
 </style>
