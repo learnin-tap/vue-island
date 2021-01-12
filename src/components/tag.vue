@@ -10,10 +10,11 @@
 <script>
 export default {
   name: "tag",
-  props: {
-    text: String,
-    tagClass: String,
-  },
+  props: ["text", "tagClass"],
+  // props: {
+  //   text: String,
+  //   tagClass: String,
+  // },
   methods: {
     onTap() {
       this.$emit("tapping", this.text);

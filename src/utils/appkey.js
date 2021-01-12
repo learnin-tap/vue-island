@@ -1,1 +1,2 @@
-module.exports.appkey = "admin";
+export const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjIsInNjb3BlIjo4LCJpYXQiOjE2MTA0Njk2NTgsImV4cCI6MTYxMzA2MTY1OH0.2mCZoW2ZZkQSk83Vfn0a1TTy25pIKswcUxdq2VS95Sg'

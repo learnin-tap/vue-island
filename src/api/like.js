@@ -1,27 +1,27 @@
-import { HTTP } from "../utils/http.js";
+import { HTTP } from '../utils/http.js'
 
 class LikeModel extends HTTP {
   like(behavior, artID, category) {
-    let url = behavior === "like" ? "like" : "like/cancel";
+    let url = behavior === 'like' ? 'like' : 'like/cancel'
     this.ask({
       url: url,
-      method: "POST",
+      method: 'POST',
       data: {
         art_id: artID,
         type: category,
       },
       success: (data) => {
-        console.log(data);
+        console.log(data)
       },
-    });
+    })
   }
 
   getClassicLikeStatus(artID, category, sCallback) {
     this.ask({
-      url: "classic/" + category + "/" + artID + "/favor",
+      url: 'classic/' + category + '/' + artID + '/favor',
       success: sCallback,
-    });
+    })
   }
 }
 
-export { LikeModel };
+export { LikeModel }
