@@ -10,8 +10,8 @@
         <div class="like-container">
           <Like
             @like="onLike"
-            :like="this.likeStatus"
-            :count="this.likeCount"
+            :like="this.like_status"
+            :count="this.like_count"
           />
           <ImgBtn class="share-btn">
             <template v-slot:img>
@@ -24,12 +24,12 @@
       <Movie
         v-if="classicData"
         :display="classicData.type == 100"
-        :img="real_img"
+        :img="classicData.image"
         :content="classicData.content"
       />
       <Music
         v-if="classicData && classicData.type == 200"
-        :img="real_img"
+        :img="classicData.image"
         :src="classicData.url"
         :title="classicData.title"
         :content="classicData.content"
@@ -37,7 +37,7 @@
       <Essay
         v-if="classicData"
         :display="classicData.type == 300"
-        :img="real_img"
+        :img="classicData.image"
         :content="classicData.content"
       />
       <Navi
@@ -84,17 +84,26 @@
         latest: true,
         first: false,
         // 点赞状态和点赞数据不写入缓存，单独调用接口
-        likeCount: 0,
-        likeStatus: false,
+        like_status: false,
+        like_count: 0,
       }
     },
     computed: {
-      real_img: function() {
-        const imgUrl = this.classicData.image
-        const imgName = imgUrl.slice(imgUrl.indexOf('images'))
-        let val = `http://121.43.184.102:8886/static/${imgName}`
-        return val
-      },
+      // real_img: function() {
+      //   const imgUrl = this.classicData.image
+      //   const imgName = imgUrl.slice(imgUrl.indexOf('images'))
+      //   let val = `http://121.43.184.102:8886/static/${imgName}`
+      //   return val
+      // },
+    },
+    watch: {
+      // likeCount(newVal, oldVal) {
+      //   console.log(newVal, oldVal, 'LLL')
+      //   this.likeCount = this.like_count
+      // },
+      // likeStatus() {
+      //   this.likeStatus = this.like_status
+      // },
     },
     created() {
       this.getLatest()
@@ -103,8 +112,8 @@
       getLatest() {
         classicModel.getLatest((res) => {
           this.classicData = res
-          this.likeCount = res.fav_nums
-          this.likeStatus = res.like_status
+          this.like_count = res.fav_nums
+          this.like_status = res.like_status
         })
       },
       onLike(e) {
@@ -119,55 +128,58 @@
       _updateClassic(nextOrPrevious) {
         let index = this.classicData.index
         classicModel.getClassic(index, nextOrPrevious, (res) => {
-          // this._getLikeStatus(res.id, res.type);
+          this._getLikeStatus(res.id, res.type)
           this.classicData = res
           this.latest = classicModel.isLatest(res.index)
           this.first = classicModel.isFirst(res.index)
         })
       },
-      // _getLikeStatus(artID, category) {
-      //   likeModel.getClassicLikeStatus(artID, category, (res) => {
-      //     this.likeCount = res.fav_nums;
-      //     this.likeStatus = res.like_status;
-      //   });
-      // },
+      _getLikeStatus(artID, category) {
+        // console.log('后来')
+        likeModel.getClassicLikeStatus(artID, category, (res) => {
+          // console.log(res, '再后来')
+          this.like_count = res.fav_nums
+          this.like_status = res.like_status
+          // console.log(this.likeCount, '最后来', this.likeStatus)
+        })
+      },
     },
   }
 </script>
 
 <style lang="stylus" scoped>
   .container
-  	width 100%
-  	margin-top 1rem
-  	display flex
-  	flex-direction column
-  	align-items center
-  	.header
-  		width 100%
-  		height 1rem
-  		display flex
-  		flex-direction row
-  		align-items center
-  		justify-content space-between
-  		border-top .02rem solid #f5f5f5
-  		border-bottom .02rem solid #f5f5f5
-  		.episode
-  			margin-left .2rem
-  			margin-top .04rem
-  		.like-container
-  			display flex
-  			// width 100rpx
-  			// width 0.5rem
-  			flex-direction row
-  			justify-content space-between
-  			align-items center
-  			margin-right .3rem
-  			.share-btn
-  				margin-left .1rem
-  				.share
-  					width .4rem
-  					height .4rem
-  	.navi
-  		bottom 1.4rem
-  		position absolute
+    width 100%
+    margin-top 1rem
+    display flex
+    flex-direction column
+    align-items center
+    .header
+      width 100%
+      height 1rem
+      display flex
+      flex-direction row
+      align-items center
+      justify-content space-between
+      border-top .02rem solid #f5f5f5
+      border-bottom .02rem solid #f5f5f5
+      .episode
+        margin-left .2rem
+        margin-top .04rem
+      .like-container
+        display flex
+        // width 100rpx
+        // width 0.5rem
+        flex-direction row
+        justify-content space-between
+        align-items center
+        margin-right .3rem
+        .share-btn
+          margin-left .1rem
+          .share
+            width .4rem
+            height .4rem
+    .navi
+      bottom 1.4rem
+      position absolute
 </style>

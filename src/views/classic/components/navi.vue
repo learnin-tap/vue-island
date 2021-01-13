@@ -51,17 +51,17 @@
 
 <style lang="stylus" scoped>
   .container
-  	width 6rem
-  	height 0.8rem
-  	background #f7f7f7
-  	border-radius .02rem
-  	display inline-flex
-  	flex-direction row
-  	justify-content space-between
-  	align-items center
-  	.icon
-  		width .8rem
-  		height .8rem
-  	.title
-  		font-size .28rem
+    width 6rem
+    height 0.8rem
+    background #f7f7f7
+    border-radius .02rem
+    display inline-flex
+    flex-direction row
+    justify-content space-between
+    align-items center
+    .icon
+      width .8rem
+      height .8rem
+    .title
+      font-size .28rem
 </style>

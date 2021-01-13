@@ -9,19 +9,19 @@
 </template>
 
 <script>
-import Header from "@/components/_header";
-import Footer from "@/components/_footer";
-export default {
-  components: {
-    Header,
-    Footer,
-  },
-};
+  import Header from '@/components/_header'
+  import Footer from '@/components/_footer'
+  export default {
+    components: {
+      Header,
+      Footer,
+    },
+  }
 </script>
 <style lang="stylus" scoped>
-// .header
-// 	position fixed
-// 	top 0
-// 	background green
-// 	z-index 101
+  // .header
+  // 	position fixed
+  // 	top 0
+  // 	background green
+  // 	z-index 101
 </style>

@@ -10,9 +10,6 @@ class LikeModel extends HTTP {
         art_id: artID,
         type: category,
       },
-      success: (data) => {
-        console.log(data)
-      },
     })
   }
 
