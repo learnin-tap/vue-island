@@ -13,7 +13,7 @@
     props: {
       like: Boolean,
       count: Number,
-      // readOnly: Boolean,
+      readOnly: Boolean,
     },
 
     data() {
@@ -21,24 +21,33 @@
         // 也可以通过impoet导入，直接引用会导致打包加上hash值导致引用失败
         yes_url: require('./images/like.png'),
         no_url: require('./images/like@dis.png'),
-        likeStatus: false,
-        likeCount: 0,
+        likeStatus: this.like,
+        likeCount: this.count,
         flag: false,
       }
     },
+    computed: {
+      receive_like() {
+        return this.likeStatus
+      },
+    },
     watch: {
       like(newVal) {
-        this.flag = 0
+        this.flag = false
         this.likeStatus = JSON.parse(JSON.stringify(newVal))
       },
       count(newVal) {
-        this.flag = 0
+        this.flag = false
         this.likeCount = JSON.parse(JSON.stringify(newVal))
       },
     },
 
     methods: {
       onLike() {
+        // 只读
+        if (this.readOnly) {
+          return
+        }
         if (!this.flag) {
           this.flag = true
           this.likeStatus = !this.like

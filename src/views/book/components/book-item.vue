@@ -25,12 +25,10 @@
     methods: {
       onTap() {
         const id = this.book.id
-        const isbn = this.book.isbn
         this.$router.push({
           name: `BookDetail`,
           params: {
             id,
-            isbn,
           },
         })
       },

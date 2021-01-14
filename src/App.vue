@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header class="header" />
-    <keep-alive exclude="book-detail">
+    <keep-alive :exclude="['My', 'book-detail', 'classic-detail']">
       <router-view />
     </keep-alive>
     <Footer />

@@ -50,7 +50,7 @@
         <span>输入短评</span>
       </div>
       <div class="like-container">
-        <Like :like="likeStatus" :count="likeCount" />
+        <Like @like="onLike" :like="likeStatus" :count="likeCount" />
         <ImgBtn>
           <template v-slot:img>
             <img class="share" src="@images/icon/share.png" alt="" />
@@ -119,9 +119,9 @@
   // import Dialog from "@/components/dialog";
   // import Toast from "@/components/toast";
   import { BookModel } from '@/api/book'
-  // import { LikeModel } from "@/api/like";
+  import { LikeModel } from '@/api/like'
   const bookModel = new BookModel()
-  // const likeModel = new LikeModel();
+  const likeModel = new LikeModel()
   export default {
     name: 'book-detail',
     components: {
@@ -163,6 +163,9 @@
           this.likeCount = res[2].fav_nums
           this.loadingCenter = false
         })
+      },
+      onLike(e) {
+        likeModel.like(e, this.book.id, 400)
       },
       // 控制短评数量
       lengthLimit(list, length) {
@@ -210,148 +213,148 @@
 
 <style lang="stylus" scoped>
   .container
-  	width 100%
-  	background #f5f5f5
-  	margin-top 1rem
-  	.head
-  		background #fff
-  		padding-top .4rem
-  		padding-bottom .4rem
-  		display flex
-  		flex-direction column
-  		align-items center
-  		& img
-  			width 2rem
-  			height 3rem
-  			box-shadow .04rem .04rem .06rem #e3e3e3
-  		.title
-  			color: #2f2f2f;
-  			margin-top: .2rem;
-  			font-size: .38rem;
-  			font-weight: 600;
-  		.author
-  			margin-top: .1rem;
-  			font-size .28rem
-  			color #999
-  	.sub-container
-  		width 6.9rem
-  		display flex
-  		flex-direction column
-  		align-items center
-  		margin-top .3rem
-  		background #fff
-  		padding .3rem
-  		.headline
-  			font-size .3rem
-  			font-weight 600
-  			color #2f2f2f
-  			margin-bottom .2rem
-  		.comment-container
-  			display flex
-  			flex-direction row
-  			flex-wrap wrap
-  			.tag
-  				margin-right .15rem
-  				margin-bottom .1rem
-  				.num
-  					margin-left .1rem
-  					font-size .22rem
-  					color #aaa
-  		.content
-  			text-indent 2em
-  			font-weight 500
-  			white-space pre-wrap
-  			line-height .35rem
-  		.detail-container
-  			width 100%
-  			display flex
-  			flex-direction row
-  			justify-content flex-start
-  			margin-bottom 2rem
-  			font-size .28rem
-  			color #666
-  			.vertical
-  				display flex
-  				flex-direction column
-  				line-height .35rem
-  			.description
-  				color #999
-  				margin-right .3rem
+    width 100%
+    background #f5f5f5
+    margin-top 1rem
+    .head
+      background #fff
+      padding-top .4rem
+      padding-bottom .4rem
+      display flex
+      flex-direction column
+      align-items center
+      & img
+        width 2rem
+        height 3rem
+        box-shadow .04rem .04rem .06rem #e3e3e3
+      .title
+        color: #2f2f2f;
+        margin-top: .2rem;
+        font-size: .38rem;
+        font-weight: 600;
+      .author
+        margin-top: .1rem;
+        font-size .28rem
+        color #999
+    .sub-container
+      width 6.9rem
+      display flex
+      flex-direction column
+      align-items center
+      margin-top .3rem
+      background #fff
+      padding .3rem
+      .headline
+        font-size .3rem
+        font-weight 600
+        color #2f2f2f
+        margin-bottom .2rem
+      .comment-container
+        display flex
+        flex-direction row
+        flex-wrap wrap
+        .tag
+          margin-right .15rem
+          margin-bottom .1rem
+          .num
+            margin-left .1rem
+            font-size .22rem
+            color #aaa
+      .content
+        text-indent 2em
+        font-weight 500
+        white-space pre-wrap
+        line-height .35rem
+      .detail-container
+        width 100%
+        display flex
+        flex-direction row
+        justify-content flex-start
+        margin-bottom 2rem
+        font-size .28rem
+        color #666
+        .vertical
+          display flex
+          flex-direction column
+          line-height .35rem
+        .description
+          color #999
+          margin-right .3rem
   .post-container
-  	height 1rem
-  	box-shadow .02rem -.02rem .02rem #e3e3e3
-  	position fixed
-  	width 6.9rem
-  	background #fff
-  	bottom 1rem
-  	display flex
-  	flex-direction row
-  	align-items center
-  	justify-content space-between
-  	padding 0 .3rem
-  	.post-fake
-  		display flex
-  		flex-direction row
-  		align-items center
-  		height .6rem
-  		width 4.6rem
-  		border .02rem solid #999
-  		border-radius .3rem
-  		font-size .22rem
-  		padding-left .2rem
-  	.like-container
-  		display flex
-  		flex-direction row
-  		justify-content space-between
-  		align-items center
-  		.share
-  			width .4rem
-  			height .4rem
+    height 1rem
+    box-shadow .02rem -.02rem .02rem #e3e3e3
+    position fixed
+    width 6.9rem
+    background #fff
+    bottom 1rem
+    display flex
+    flex-direction row
+    align-items center
+    justify-content space-between
+    padding 0 .3rem
+    .post-fake
+      display flex
+      flex-direction row
+      align-items center
+      height .6rem
+      width 4.6rem
+      border .02rem solid #999
+      border-radius .3rem
+      font-size .22rem
+      padding-left .2rem
+    .like-container
+      display flex
+      flex-direction row
+      justify-content space-between
+      align-items center
+      .share
+        width .4rem
+        height .4rem
   .posting-container
-  	bottom 1rem
-  	position fixed
-  	display flex
-  	flex-direction column
-  	align-items center
-  	background #fff
-  	width 100%
-  	z-index 999
-  	.post-header
-  		width 100%
-  		height 1rem
-  		border-top .02rem solid #f5f5f5
-  		border-bottom .02rem solid #f5f5f5
-  		display flex
-  		flex-direction row
-  		align-items center
-  		justify-content space-between
-  		& span
-  			padding .25rem
-  		& span:first-child
-  			font-size .28rem
-  			color #bbb
-  		.cancel
-  			color #666
-  	.comment-container
-  		width 6.9rem
-  		padding .4rem .3rem 0 .3rem
-  		.tag
-  			margin-right .15rem
-  			margin-bottom .1rem
-  			display inline-flex
-  			.num
-  				margin-left .1rem
-  				font-size .22rem
-  				color #aaa
-  	.post
-  		width 6.9rem
-  		height .56rem
-  		margin 0.3rem auto
-  		background #f5f5f5
-  		border-radius .3rem
-  		padding-left .25rem
+    bottom 1rem
+    position fixed
+    display flex
+    flex-direction column
+    align-items center
+    background #fff
+    width 100%
+    z-index 999
+    .post-header
+      width 100%
+      height 1rem
+      border-top .02rem solid #f5f5f5
+      border-bottom .02rem solid #f5f5f5
+      display flex
+      flex-direction row
+      align-items center
+      justify-content space-between
+      & span
+        padding .25rem
+      & span:first-child
+        font-size .28rem
+        color #bbb
+      .cancel
+        color #666
+    .comment-container
+      width 6.9rem
+      padding .4rem .3rem 0 .3rem
+      .tag
+        margin-right .15rem
+        margin-bottom .1rem
+        display inline-flex
+        .num
+          margin-left .1rem
+          font-size .22rem
+          color #aaa
+    .post
+      width 6.9rem
+      height .56rem
+      margin 0.3rem auto
+      background #f5f5f5
+      border-radius .3rem
+      padding-left .25rem
   .loading-center
-  	position absolute
-  	top 50%
-  	left 50%
+    position absolute
+    top 50%
+    left 50%
 </style>

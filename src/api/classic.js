@@ -61,6 +61,14 @@ class ClassicModel extends HTTP {
     this.ask(params)
   }
 
+  getById(cid, type, success) {
+    let params = {
+      url: 'classic/' + type + '/' + cid,
+      success: success,
+    }
+    this.ask(params)
+  }
+
   _setLatestIndex(index) {
     try {
       localStorage.setItem('latest', index)

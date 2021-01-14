@@ -10,7 +10,7 @@ class BookModel extends HTTP {
   }
 
   getBookCount() {
-    return this.ask('book//favor/count')
+    return this.ask('book/favor/count')
   }
 
   getDetail(bid) {

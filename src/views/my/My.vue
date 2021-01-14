@@ -15,15 +15,20 @@
           <span class="description">关于我们</span>
         </div>
         <div class="about-us">
-          <span class="book-num">666</span>
+          <span class="book-num">{{ bookCount }}</span>
           <span class="description">喜欢的书</span>
         </div>
       </div>
+
       <div class="like-container">
         <img src="@images/my/like.png" alt="" class="headline" />
         <div class="preview-container">
           <div v-for="(item, index) of classics" :key="index">
-            <Preview class="preview" :classic="item" />
+            <Preview
+              :classic="item"
+              @tapping="onJumpToDetail"
+              class="preview"
+            />
           </div>
         </div>
       </div>
@@ -32,112 +37,123 @@
 </template>
 
 <script>
-import ImgBtn from "@/components/imgBtn";
-import Preview from "./components/preview";
-import { ClassicModel } from "@/api/classic";
-import { BookModel } from "@/api/book";
-const classicModel = new ClassicModel();
-const bookModel = new BookModel();
-export default {
-  name: "My",
-  components: {
-    ImgBtn,
-    Preview,
-  },
-  data() {
-    return {
-      authorized: false, //是否授权
-      userInfo: null, //用户信息
-      booCount: 0, //书籍数量
-      classics: null,
-    };
-  },
-  created() {
-    this.getMyFavor();
-    this.hasGottenUserInfo();
-    this.getMyBookCount();
-  },
-  methods: {
-    getMyFavor() {
-      classicModel.getMyFavor((data) => {
-        data = data.msg;
-        this.classics = data;
-      });
+  import ImgBtn from '@/components/imgBtn'
+  import Preview from './components/preview'
+  import { ClassicModel } from '@/api/classic'
+  import { BookModel } from '@/api/book'
+  const classicModel = new ClassicModel()
+  const bookModel = new BookModel()
+  export default {
+    name: 'My',
+    components: {
+      ImgBtn,
+      Preview,
     },
-    hasGottenUserInfo() {
-      this.authorized = true;
-      this.userInfo = {};
+    data() {
+      return {
+        authorized: false, //是否授权
+        userInfo: null, //用户信息
+        bookCount: 0, //书籍数量
+        classics: null,
+      }
     },
-    getMyBookCount() {
-      bookModel.getBookCount((data) => {
-        this.booCount = data.count;
-      });
+
+    created() {
+      this.getMyFavor()
+      this.hasGottenUserInfo()
+      this.getMyBookCount()
     },
-  },
-};
+    methods: {
+      getMyFavor() {
+        classicModel.getMyFavor((data) => {
+          this.classics = data
+        })
+      },
+      hasGottenUserInfo() {
+        this.authorized = true
+        this.userInfo = {}
+      },
+      getMyBookCount() {
+        bookModel.getBookCount().then((data) => {
+          this.bookCount = data.count
+        })
+      },
+      onJumpToDetail(e) {
+        const { id, type } = e
+        this.$router.push({
+          name: `ClassicDetail`,
+          query: {
+            id,
+            type,
+          },
+        })
+      },
+    },
+  }
 </script>
 <style lang="stylus" scoped>
-.container
-	display flex
-	flex-direction column
-	align-items center
-	margin-bottom 1rem
-	.bg
-		width 7.5rem
-		height 5.74rem
-	.avatar-position
-		position absolute
-		top 2.55rem
-		.avatar
-			width 1.2rem
-			height 1.2rem
-			overflow hidden
-			border-radius 50%
-	.avatar-container
-		display flex
-		flex-direction column
-		align-items center
-	.about-container
-		padding 0 1rem
-		width 5.5rem
-		display flex
-		flex-direction row
-		justify-content space-between
-		position absolute
-		top 4.4rem
-		.about-us
-			display flex
-			flex-direction column
-			align-items center
-			justify-content space-between
-			.about-img
-				width .34rem
-				height .34rem
-			.description
-				font-size .24rem
-				color #999
-				line-height .4rem
-			.book-num
-				font-size .36rem
-				color #000
-	.like-container
-		margin-top -.13rem
-		display flex
-		flex-direction column
-		align-items center
-		background #f5f5f5
-		.headline
-			margin-top .3rem
-			width .97rem
-			height .42rem
-		.preview-container
-			margin-top .3rem
-			width 6.9rem
-			display flex
-			flex-direction row
-			padding 0 .3rem
-			flex-wrap wrap
-			justify-content space-between
-			.preview
-				margin-bottom .3rem
+  .container
+    display flex
+    flex-direction column
+    align-items center
+    margin-bottom 1rem
+    .bg
+      width 7.5rem
+      height 5.74rem
+    .avatar-position
+      position absolute
+      top 2.55rem
+      .avatar
+        width 1.2rem
+        height 1.2rem
+        overflow hidden
+        border-radius 50%
+    .avatar-container
+      display flex
+      flex-direction column
+      align-items center
+    .about-container
+      padding 0 1rem
+      width 5.5rem
+      display flex
+      flex-direction row
+      justify-content space-between
+      position absolute
+      top 4.4rem
+      .about-us
+        display flex
+        flex-direction column
+        align-items center
+        justify-content space-between
+        .about-img
+          width .34rem
+          height .34rem
+        .description
+          font-size .24rem
+          color #999
+          line-height .4rem
+        .book-num
+          font-size .36rem
+          color #000
+    .like-container
+      margin-top -.13rem
+      margin-bottom 1rem
+      display flex
+      flex-direction column
+      align-items center
+      background #f5f5f5
+      .headline
+        margin-top .3rem
+        width .97rem
+        height .42rem
+      .preview-container
+        margin-top .3rem
+        width 6.9rem
+        display flex
+        flex-direction row
+        padding 0 .3rem
+        flex-wrap wrap
+        justify-content space-between
+        .preview
+          margin-bottom .3rem
 </style>

@@ -135,12 +135,9 @@
         })
       },
       _getLikeStatus(artID, category) {
-        // console.log('后来')
         likeModel.getClassicLikeStatus(artID, category, (res) => {
-          // console.log(res, '再后来')
           this.like_count = res.fav_nums
           this.like_status = res.like_status
-          // console.log(this.likeCount, '最后来', this.likeStatus)
         })
       },
     },
