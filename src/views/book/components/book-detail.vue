@@ -8,7 +8,7 @@
       </div>
       <div class="sub-container">
         <span class="headline">短评</span>
-        <div class="comment-container" v-if="comments.comments">
+        <div class="comment-container" v-if="comments == true">
           <div
             v-for="(item, index) in lengthLimit(comments.comments, 5)"
             :key="index"
@@ -18,6 +18,7 @@
             </Tag>
           </div>
         </div>
+        <div class="comment-container" v-else>还没有短评</div>
       </div>
       <div class="sub-container">
         <span class="headline">内容简介</span>
@@ -61,7 +62,7 @@
 
     <div class="posting-container" v-if="posting">
       <div class="post-header">
-        <span v-if="comments">可点击标签+1</span>
+        <span v-if="comments == true">可点击标签+1</span>
         <span v-else>暂无短评</span>
         <span class="cancel" @click="onCancel">取消</span>
       </div>
@@ -77,8 +78,8 @@
             :tagClass="judgeAttr(index)"
           >
             <span class="num" slot="after">+{{ item.nums }}</span>
-          </Tag></span
-        >
+          </Tag>
+        </span>
       </div>
       <input
         class="post"
@@ -228,16 +229,15 @@
         height 3rem
         box-shadow .04rem .04rem .06rem #e3e3e3
       .title
-        color: #2f2f2f;
-        margin-top: .2rem;
-        font-size: .38rem;
-        font-weight: 600;
+        color: #2f2f2f
+        margin-top .2rem
+        font-size .38rem
+        font-weight 600
       .author
-        margin-top: .1rem;
+        margin-top .1rem
         font-size .28rem
         color #999
     .sub-container
-      width 6.9rem
       display flex
       flex-direction column
       align-items center
@@ -284,14 +284,13 @@
     height 1rem
     box-shadow .02rem -.02rem .02rem #e3e3e3
     position fixed
-    width 6.9rem
+    width 100%
     background #fff
     bottom 1rem
     display flex
     flex-direction row
     align-items center
-    justify-content space-between
-    padding 0 .3rem
+    justify-content space-around
     .post-fake
       display flex
       flex-direction row
@@ -305,7 +304,7 @@
     .like-container
       display flex
       flex-direction row
-      justify-content space-between
+      justify-content center
       align-items center
       .share
         width .4rem
@@ -336,8 +335,8 @@
       .cancel
         color #666
     .comment-container
-      width 6.9rem
-      padding .4rem .3rem 0 .3rem
+      width 100%
+      padding .4rem .3rem 0 .5rem
       .tag
         margin-right .15rem
         margin-bottom .1rem
@@ -347,7 +346,7 @@
           font-size .22rem
           color #aaa
     .post
-      width 6.9rem
+      width 100%
       height .56rem
       margin 0.3rem auto
       background #f5f5f5

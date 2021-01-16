@@ -56,7 +56,6 @@
         count: 0,
       }
     },
-
     methods: {
       getDetailInfo() {
         const { id, type } = this.$route.query

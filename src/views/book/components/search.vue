@@ -56,10 +56,6 @@
   </div>
 </template>
 <script>
-  // import Scroll from "../components/scroll";
-  // import Pullup from "@better-scroll/pull-up";
-  // Scroll.use(Pullup);
-
   import { pagination } from '@/utils/mixin.js'
   import Tag from '@/components/tag.vue'
   import Loading from '@/components/loading.vue'
@@ -92,14 +88,14 @@
       // 加载更多
       loadMore() {
         // 用户无输出就返回
-        if (!this.data.q) return
-        //处于上锁状态则返回
-        if (this.isLocked) return
+        if (!this.q) return
+        //处于上锁状态则返回,此时正在请求更多数据
+        if (this.isLocked()) return
+        // 还有数据没请求完，可以继续进行请求
         if (this.hasMore()) {
-          this.locked()
+          this.locked() //请求数据的时候上锁
           bookModel.search(this.getCurrentStart(), this.q).then(
             (res) => {
-              res = res.books
               this.setMoreData(res.books)
               this.unLocked()
             },
@@ -130,15 +126,6 @@
         this._ShowLoadingCenter()
         this.initialize()
         bookModel.search(0, val).then((res) => {
-          res = res.msg
-          if (!res) {
-            //由于后端接口处理不当，导致无数据返回时res.msg直接为null，先这样挽救一下
-            res = {}
-            res.books = []
-            res.count = 0
-            res.start = 0
-            res.total = 0
-          }
           this.setMoreData(res.books)
           keywordModel.addToHistory(val)
           this.setTotal(res.total)
@@ -152,15 +139,6 @@
         this.initialize()
         this.q = e
         bookModel.search(0, this.q).then((res) => {
-          res = res.msg
-          if (!res) {
-            //由于后端接口处理不当，导致无数据返回时res.msg直接为null，先这样挽救一下
-            res = {}
-            res.books = []
-            res.count = 0
-            res.start = 0
-            res.total = 0
-          }
           this.setMoreData(res.books)
           this.setTotal(res.total)
           keywordModel.addToHistory(this.q)
@@ -199,8 +177,9 @@
       },
     },
     watch: {
-      more: function(val, oldVal) {
-        console.log(val, oldVal)
+      more: function() {
+        // console.log('变了', val, oldVal)
+        this.loadMore()
       },
     },
     created() {
@@ -293,6 +272,7 @@
     .books-container
       width 5.7rem
       margin-top 1rem
+      margin-bottom 1rem
       display flex
       flex-wrap wrap
       padding 0 .9rem

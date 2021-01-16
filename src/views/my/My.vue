@@ -7,7 +7,7 @@
       </img-btn>
       <div v-if="authorized" class="avatar-container avatar-position">
         <img class="avatar" src="@images/my/my.png" alt="" />
-        <span>6666</span>
+        <span>Gary</span>
       </div>
       <div class="about-container">
         <div class="about-us">

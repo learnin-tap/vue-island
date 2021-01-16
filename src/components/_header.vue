@@ -19,6 +19,7 @@
     // background red
     // opacity 0.3
     position fixed
+    font-size .35rem
     top 0
     z-index 101
 </style>

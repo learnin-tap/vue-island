@@ -6,7 +6,7 @@
       <img class="cover-img" :src="book.image" alt="" />
       <div class="description">
         <span class="title">{{ book.title }}</span>
-        <span class="author">{{ book.author }}</span>
+        <span class="author">{{ author }}</span>
         <div class="foot">
           <span class="footer">{{ book.fav_nums }} 喜欢</span>
         </div>
@@ -21,6 +21,16 @@
     name: 'BookItem',
     props: {
       book: Object,
+    },
+    computed: {
+      author() {
+        // author数据：热门图书返回字符串，搜索返回的是数组，需要作如下处理
+        if (typeof this.book.author == 'string') {
+          return this.book.author
+        } else {
+          return this.book.author[0]
+        }
+      },
     },
     methods: {
       onTap() {
@@ -60,17 +70,18 @@
       border-bottom-right-radius .04rem
       border-bottom-left-radius .04rem
       .title
-        margin-top .1rem
+        padding-top .05rem
         text-overflow ellipsis
         white-space nowrap
         overflow hidden
       .author
         font-size .2rem
         color #999
+        padding-top .05rem
         margin-bottom .1rem
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidden
       .foot
         font-size .2rem
         display flex
