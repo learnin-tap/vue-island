@@ -15,7 +15,7 @@ class HTTP {
 
   _ask(url, resolve, reject, method = 'get', data = {}) {
     request({
-      url: process.env.VUE_APP_BASE_API + 'v1/' + url,
+      url: process.env.VUE_APP_BASE_API + '/v1/' + url,
       method,
       data,
     })

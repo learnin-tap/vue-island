@@ -70,8 +70,8 @@
       justify-content space-between
       height .8rem
       .like
-        margin-top .04rem
-        margin-right .04rem
+        margin-top -.04rem
+        // margin-right .2rem
     .other-img
       width 100%
       height 2.4rem

@@ -63,20 +63,24 @@
       display flex
       flex-direction row
       align-items baseline
+      // width 1.5rem
       .plain
         font-size .32rem
       .index
         font-size .6rem
         line-height .6rem
-        font-weight 600
-        margin-right .14rem
+        font-weight 800
+        padding-right .14rem
       .line
         height .44rem
+        // padding-left: .04rem
         margin-right .14rem
-        border-left .03rem solid black
+        border-left 0.02rem solid black
     .date-container
       display flex
       flex-direction column
+      // align-items center
+      // justify-content space-around
       margin-top .06rem
       .month
         font-size .24rem

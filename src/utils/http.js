@@ -13,7 +13,7 @@ class HTTP {
       params.method = 'GET'
     }
     request({
-      url: process.env.VUE_APP_BASE_API + 'v1/' + params.url,
+      url: process.env.VUE_APP_BASE_API + '/v1/' + params.url,
       method: params.method,
       data: params.data,
     })

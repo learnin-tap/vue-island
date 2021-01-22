@@ -178,7 +178,6 @@
     },
     watch: {
       more: function() {
-        // console.log('变了', val, oldVal)
         this.loadMore()
       },
     },
@@ -188,6 +187,7 @@
     },
   }
 </script>
+
 <style lang="stylus" scoped>
   .container
     display flex
@@ -195,7 +195,6 @@
     align-items center
     width 100%
     margin-top 1rem
-    margin-bottom 1rem
     .header
       position fixed
       height 1rem
@@ -203,7 +202,7 @@
       border-bottom .02rem solid #f5f5f5
       display flex
       flex-direction row
-      width 7.5rem
+      width 100%
       align-items center
       z-index 98
       background #fff
@@ -214,6 +213,7 @@
         background #f5f5f5
         border-radius 1rem
         margin-left .2rem
+        width 100%
         .icon
           width .28rem
           height .28rem
@@ -224,7 +224,6 @@
           border-bottom-right-radius .3rem
           display inline-block
           height .68rem
-          width 5rem
           font-size .28rem
           background #f5f5f5
         input::-webkit-input-placeholder
@@ -232,7 +231,7 @@
         .cancel-img
           width .28rem
           height .28rem
-          margin-right .2rem
+          margin-left 28%
       .cancel
         line-height .68rem
         width 1.2rem
@@ -240,7 +239,6 @@
         display inline-block
         border none
     .history
-      width 6.9rem
       margin .4rem	0 .2rem 0
       display flex
       font-size .28rem
@@ -270,7 +268,7 @@
     .hot-search
       margin-top .7rem
     .books-container
-      width 5.7rem
+      // width 5.7rem
       margin-top 1rem
       margin-bottom 1rem
       display flex

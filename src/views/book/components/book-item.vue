@@ -45,12 +45,13 @@
     },
   }
 </script>
+
 <style lang="stylus" scoped>
   .container
     margin-top .3rem
     display flex
     position relative
-    box-shadow .02rem .02rem .03rem #e3e3e3
+    box-shadow .04rem .04rem .06rem #e3e3e3
     flex-direction column
     width 2.4rem
     height 3.6rem

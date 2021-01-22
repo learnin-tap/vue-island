@@ -1,35 +1,33 @@
 <template>
-  <div>
-    <div class="container">
-      <img src="@images/my/my@bg.png" class="bg" alt="" />
-      <img-btn class="avatar-position">
-        <img slot="img" src="@images/my/my.png" class="avatar" alt="" />
-      </img-btn>
-      <div v-if="authorized" class="avatar-container avatar-position">
-        <img class="avatar" src="@images/my/my.png" alt="" />
-        <span>Gary</span>
+  <div class="container">
+    <img src="@images/my/my@bg.png" class="bg" alt="" />
+    <img-btn class="avatar-position">
+      <img slot="img" src="@images/my/my.png" class="avatar" alt="" />
+    </img-btn>
+    <div
+      v-if="authorized"
+      @click="onTap"
+      class="avatar-container avatar-position"
+    >
+      <img class="avatar" src="@images/my/my.png" alt="" />
+      <span class="nickName">Gary</span>
+    </div>
+    <div class="about-container">
+      <div class="about-us" @click="onTap">
+        <img class="about-img" src="@images/my/about.png" alt="" />
+        <span class="description">关于我们</span>
       </div>
-      <div class="about-container">
-        <div class="about-us">
-          <img class="about-img" src="@images/my/about.png" alt="" />
-          <span class="description">关于我们</span>
-        </div>
-        <div class="about-us">
-          <span class="book-num">{{ bookCount }}</span>
-          <span class="description">喜欢的书</span>
-        </div>
+      <div class="about-us">
+        <span class="book-num">{{ bookCount }}</span>
+        <span class="description">喜欢的书</span>
       </div>
+    </div>
 
-      <div class="like-container">
-        <img src="@images/my/like.png" alt="" class="headline" />
-        <div class="preview-container">
-          <div v-for="(item, index) of classics" :key="index">
-            <Preview
-              :classic="item"
-              @tapping="onJumpToDetail"
-              class="preview"
-            />
-          </div>
+    <div class="like-container">
+      <img src="@images/my/like.png" alt="" class="headline" />
+      <div class="preview-container">
+        <div v-for="(item, index) of classics" :key="index">
+          <Preview :classic="item" @tapping="onJumpToDetail" class="preview" />
         </div>
       </div>
     </div>
@@ -57,7 +55,6 @@
         classics: null,
       }
     },
-
     created() {
       this.getMyFavor()
       this.hasGottenUserInfo()
@@ -88,17 +85,20 @@
           },
         })
       },
+      onTap() {
+        alert('继续开发中~')
+      },
     },
   }
 </script>
+
 <style lang="stylus" scoped>
   .container
     display flex
     flex-direction column
     align-items center
-    margin-bottom 1rem
     .bg
-      width 7.5rem
+      width 100%
       height 5.74rem
     .avatar-position
       position absolute
@@ -108,13 +108,15 @@
         height 1.2rem
         overflow hidden
         border-radius 50%
+      .nickName
+        margin-bottom .1rem
+        font-size .32rem
     .avatar-container
       display flex
       flex-direction column
       align-items center
     .about-container
-      padding 0 1rem
-      width 5.5rem
+      width 75%
       display flex
       flex-direction row
       justify-content space-between
@@ -148,10 +150,9 @@
         height .42rem
       .preview-container
         margin-top .3rem
-        width 6.9rem
+        width 95%
         display flex
         flex-direction row
-        padding 0 .3rem
         flex-wrap wrap
         justify-content space-between
         .preview

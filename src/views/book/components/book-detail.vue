@@ -89,24 +89,6 @@
       />
     </div>
     <Shadow v-if="posting" />
-    <!-- <Dialog class="loading-center" :isShow="true" @on-close="closeDialog">
-      <div slot="header">插入到name为header的slot标签里面</div>
-      <div class="dialog_publish_main" slot="main">
-        这里是内容插入到子组件的slot的name为main里面，可以在父组件中添加class定义样式，事件类型等各种操作
-      </div>
-    </Dialog> -->
-    <!-- v-if="this.toast.isShow"
-      :isShow="this.toast.isShow"
-      :duration="this.toast.duration" -->
-    <!-- <Toast
-      v-if="toastShow"
-      :isShow="toastShow"
-      :duration="toast.duration"
-      :content="toast.content"
-    > -->
-    <!-- <template v-slot:content>???????</template> -->
-    <!-- <div slot="content">?{{ this.toast.content }}</div> -->
-    <!-- </Toast> -->
     <Loading class="loading-center" v-if="loadingCenter" />
   </div>
 </template>
@@ -117,8 +99,6 @@
   import Like from '@/components/like'
   import ImgBtn from '@/components/imgBtn'
   import Shadow from '@/components/shadow'
-  // import Dialog from "@/components/dialog";
-  // import Toast from "@/components/toast";
   import { BookModel } from '@/api/book'
   import { LikeModel } from '@/api/like'
   const bookModel = new BookModel()
@@ -141,8 +121,6 @@
         likeStatus: false,
         likeCount: 0,
         val: '', //用户输入短评内容
-        // toast: {},
-        // toastShow: false, //控制toast状态
         posting: false, //是否进行短评的页面状态控制
         loadingCenter: true, //控制进入时loading状态
       }
@@ -151,9 +129,6 @@
       // 获取书籍相关信息
       getDetailInfo() {
         const bid = this.$route.params.id
-        // const isbn = this.$route.params.isbn;
-        // const bid = 6021440
-        // const isbn = 9787115249494
         const detail = bookModel.getDetail(bid)
         const comments = bookModel.getComments(bid)
         const likeStatus = bookModel.getLikeStatus(bid)

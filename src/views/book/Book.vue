@@ -43,7 +43,6 @@
         books: [],
         searching: false,
         more: '',
-        // timer: null,
       }
     },
     mounted() {
@@ -76,7 +75,7 @@
         //变量scrollHeight是滚动条的总高度
         let scrollHeight =
           document.documentElement.scrollHeight || document.body.scrollHeight
-        if (scrollTop + windowHeight >= scrollHeight - 100) {
+        if (scrollTop + windowHeight >= scrollHeight - 125) {
           this.more = random(16) //每次触底传入变化的值使搜索组件监听加载
         }
       },
@@ -97,6 +96,7 @@
     },
   }
 </script>
+
 <style lang="stylus" scoped>
   .container
     display flex
@@ -132,11 +132,6 @@
           width .28rem
           height .28rem
           margin-bottom -.04rem
-      // .scroll-wrapper
-      // 	background #f5f5f5
-      // 	height 15rem
-      // 	// position relative
-      // 	overflow hidden
     .sub-container
       display flex
       flex-direction column

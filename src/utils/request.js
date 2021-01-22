@@ -3,10 +3,10 @@ import { token } from './appkey'
 import { Base64 } from 'js-base64'
 // 创建axios的实例
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, //公共接口
+  // baseURL: process.env.VUE_APP_BASE_API, //公共接口
+  baseURL: '',
   timeout: 10 * 1000, //10s 超时时间
 })
-
 // 请求拦截器,在发送请求之前做些什么
 service.interceptors.request.use(
   (config) => {

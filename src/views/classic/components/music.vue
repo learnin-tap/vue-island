@@ -71,18 +71,18 @@
 <style lang="stylus" scoped>
   .container
     display flex
-    flex-direction column;
-    align-items center;
+    flex-direction column
+    align-items center
     .classic-img
-      width: 4.22rem;
-      height: 4.22rem;
-      margin-top: .6rem;
-      border-radius: 50%;
+      width: 4.22rem
+      height: 4.22rem
+      margin-top: .4rem
+      border-radius: 50%
     .player-img
-      width: 1.2rem;
-      height: 1.2rem;
-      position: relative;
-      bottom: 2.7rem;
+      width: 1.2rem
+      height: 1.2rem
+      position: relative
+      bottom: 2.7rem
     .rotation
       transform rotate(360deg)
       animation rotation 12s linear infinite
@@ -91,29 +91,16 @@
           transform rotate(0deg)
         to
           transform rotate(360deg)
-      // -webkit-transform: rotate(360deg);
-      // animation: rotation 12s linear infinite;
-      // -moz-animation: rotation 12s linear infinite;
-      // -webkit-animation: rotation 12s linear infinite;
-      // -o-animation: rotation 12s linear infinite;
-      // @-webkit-keyframes rotation
-      // 	from {
-      // 		-webkit-transform: rotate(0deg);
-      // 	}
-
-      // 	to {
-      // 		-webkit-transform: rotate(360deg);
-      // 	}
     .tag
-      width:.44rem;
-      height:1.28rem;
-      position: relative;
-      bottom: 1.6rem;
-      right:3.1rem;
+      width .44rem
+      height 1.28rem
+      position relative
+      bottom 1.6rem
+      right 3.0rem
     .content
-      display: block;
+      display block
       /* width:275px; */
-      max-width: 5.5rem;
-      font-size: 0.36rem;
-      margin-top: -0.9rem;
+      // max-width 5.5rem
+      font-size 0.36rem
+      margin-top -1.3rem
 </style>

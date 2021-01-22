@@ -24,7 +24,7 @@
     padding .04rem .12rem
     background #f5f5f5
     color #666
-    border-radius 0.2rem
+    border-radius 0.4rem
     display inline-flex
     flex-direction row
     align-items center

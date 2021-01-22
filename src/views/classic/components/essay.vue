@@ -9,21 +9,21 @@
 </template>
 
 <script>
-import { classicBeh } from "@utils/mixin";
-export default {
-  name: "essay",
-  mixins: [classicBeh],
-};
+  import { classicBeh } from '@utils/mixin'
+  export default {
+    name: 'essay',
+    mixins: [classicBeh],
+  }
 </script>
 
 <style lang="stylus" scoped>
-@import '~@styles/classic-common.styl'
-.classic-container
-	classic-container()
-	.classic-img
-		classic-img()
-	.tag
-		tag()
-	.content
-		content()
+  @import '~@styles/classic-common.styl'
+  .classic-container
+    classic-container()
+    .classic-img
+      classic-img()
+    .tag
+      tag()
+    .content
+      content()
 </style>
