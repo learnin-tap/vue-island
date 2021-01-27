@@ -231,7 +231,8 @@
         .cancel-img
           width .28rem
           height .28rem
-          margin-left 28%
+          position absolute
+          right 1.2rem
       .cancel
         line-height .68rem
         width 1.2rem
