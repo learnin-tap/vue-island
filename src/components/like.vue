@@ -26,11 +26,6 @@
         flag: false,
       }
     },
-    computed: {
-      receive_like() {
-        return this.likeStatus
-      },
-    },
     watch: {
       like(newVal) {
         this.flag = false
